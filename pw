@@ -1,0 +1,43 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('https://healthapp.yaksha.com/');
+  await page.getByRole('textbox', { name: 'Username' }).click();
+  await page.getByRole('textbox', { name: 'Username' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Username' }).press('Enter');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('pass123');
+  await page.getByRole('button', { name: 'Sign in' }).click();
+
+
+
+  await page.getByRole('link', { name: 'Appointment ' }).click();
+  await page.locator('div').filter({ hasText: /^New-1 Click to Activate$/ }).nth(2).click();
+  await page.getByRole('button', { name: '+ New Patient' }).click();
+  await page.getByRole('link', { name: 'Appointment Booking List' }).click();
+  await page.getByRole('textbox', { name: 'Doctor Name' }).click();
+  await page.getByText('All Doctors').click();
+  await page.locator('#date').first().fill('2020-01-01');
+  await page.locator('#date').nth(1).fill('2025-12-31');
+  await page.getByRole('button', { name: ' Show Patient' }).click();
+  await page.getByRole('button', { name: ' Show Patient' }).click();
+  await page.getByRole('button', { name: 'Next' }).click();
+  await page.getByRole('gridcell', { name: 'November _2' }).nth(1).click();
+  await page.getByRole('gridcell', { name: '6155' }).click();
+  await page.getByRole('row', { name: 'Initiated 2024-11-12 11:30 AM 6155 November _2 1234561234 Dr. pooja Mishra New' }).locator('a').first().click();
+  await page.locator('#id_select_ethnic_group').selectOption('Others');
+  await page.getByRole('textbox', { name: 'Department Name' }).click();
+  await page.getByText('Cardiology').click();
+  await page.getByRole('textbox', { name: 'Doctor\'s Name' }).click();
+  await page.getByText('Dr. pooja Mishra').click();
+  await page.getByRole('button', { name: 'Print Invoice' }).click();
+  await page.getByRole('button', { name: 'Confirm' }).click();
+  await page.getByRole('button', { name: '+   Register as New Patient' }).click();
+  await page.getByText('X', { exact: true }).nth(1).click();
+  await page.getByRole('link', { name: 'Appointment Booking List' }).click();
+  await page.getByRole('textbox', { name: 'Doctor Name' }).click();
+  await page.getByText('All Doctors').click();
+  await page.locator('#date').first().fill('2020-01-01');
+  await page.getByRole('button', { name: ' Show Patient' }).click();
+  await page.getByText('CheckedIn').click();
+});
