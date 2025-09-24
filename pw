@@ -41,3 +41,31 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: ' Show Patient' }).click();
   await page.getByText('CheckedIn').click();
 });
+
+
+
+test('Testcase5', async ({ page }) => {
+  //await page.goto('https://healthapp.yaksha.com/Home/Index#/OperationTheatre/OtBookingList');
+  await page.goto('https://healthapp.yaksha.com/Account/Logout');
+  await page.getByRole('textbox', { name: 'Username' }).click();
+  await page.getByRole('textbox', { name: 'Username' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('pass123');
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.getByRole('link', { name: 'OperationTheatre ' }).click();
+  await page.locator("//button[@class='btn btn-link']").click();
+  const remarksTextArea = page.getByRole('textbox', { name: 'Remarks' });
+  await expect(remarksTextArea).toBeEnabled();
+  await expect(remarksTextArea).toHaveAttribute('placeholder', 'Remarks');
+});
+
+
+
+test.only('Testcase15', async ({ page }) => {
+  await page.goto('https://healthapp.yaksha.com/Account/Logout');
+  await page.getByRole('textbox', { name: 'Username' }).fill('admin');
+  await page.getByRole('textbox', { name: 'Password' }).fill('pass123');
+  await page.getByRole('button', { name: 'Sign in' }).click();
+  await page.locator("//li[@class='dropdown dropdown-user']").click();
+  await page.getByText('Log Out').click();
+});
